@@ -12,4 +12,11 @@ public class HotelService {
         Hotel service = new Hotel();
         service.validarHabitacion("212");
     }
+
+    @Test
+    @DisplayName("Prueba de nombre inválido")
+    void testNombreErroneo() {
+        Hotel h = new Hotel();
+        h.validarNombre("Sol");
+    }
 }
