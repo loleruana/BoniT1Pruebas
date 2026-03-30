@@ -17,6 +17,6 @@ public class HotelService {
     @DisplayName("Prueba de nombre inválido")
     void testNombreErroneo() {
         Hotel h = new Hotel();
-        h.validarNombre("Sol");
+        h.validarNombre("Mary");
     }
 }
