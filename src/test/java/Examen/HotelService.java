@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class HotelService {
@@ -19,13 +20,29 @@ public class HotelService {
     @DisplayName("Prueba de nombre inválido")
     void testNombreErroneo() {
         Hotel h = new Hotel();
-        h.validarNombre("Sol");
+        h.validarNombre("Mary");
     }
 
     @Test
-    @DisplayName("Prueba de fecha inválida ")
-    void testFechaPasada() {
+    @DisplayName("Confirmar que no acepta fechas de hoy o pasadas")
+    void testValidacionFechaVerde() {
         Hotel h = new Hotel();
-        h.validarFechaReserva(LocalDate.now());
+        assertThrows(IllegalArgumentException.class, () -> {
+            h.validarFechaReserva(LocalDate.now().minusDays(1));
+        });
+    }
+
+
+    @Test
+    @DisplayName("Registro erroneo por campo en blanco")
+    void testRegistroErroneo() {
+        Hotel h = new Hotel();
+
+        IllegalArgumentException error = assertThrows(IllegalArgumentException.class, () -> {
+            h.registrarReserva("202", "  ", LocalDate.now().plusDays(2));
+        });
+
+        assertEquals("Debe ingresar los datos requeridos", error.getMessage());
+        System.out.println("Mensaje de error capturado: " + error.getMessage());
     }
 }

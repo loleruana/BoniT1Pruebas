@@ -30,11 +30,19 @@ public class Hotel {
     // Fecha no puede ser mayor
     public void validarFechaReserva(LocalDate fechaReserva) {
         if (fechaReserva == null) {
-            throw new IllegalArgumentException("Debe ingresar una fecha válida");
+            throw new IllegalArgumentException("Debe ingresar los campos requeridos");
         }
 
         if (!fechaReserva.isAfter(LocalDate.now())) {
             throw new IllegalArgumentException("Debe ingresar una fecha válida");
         }
+    }
+    public String registrarReserva(String codigo, String nombre, LocalDate fechaReserva) {
+
+        validarHabitacion(codigo);
+        validarNombre(nombre);
+        validarFechaReserva(fechaReserva);
+
+        return "El registro ha sido exitoso";
     }
 }
