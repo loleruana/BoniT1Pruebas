@@ -45,4 +45,17 @@ public class HotelService {
         assertEquals("Debe ingresar los datos requeridos", error.getMessage());
         System.out.println("Mensaje de error capturado: " + error.getMessage());
     }
+
+    @Test
+    @DisplayName("Registro exitoso con datos correctos")
+    void testRegistroExitoso() {
+        Hotel h = new Hotel();
+
+        String resultado = h.registrarReserva("101", "Dayana", LocalDate.now().plusDays(1));
+
+        assertEquals("El registro ha sido exitoso", resultado);
+        System.out.println("Resultado exitoso: " + resultado);
+    }
+
 }
+
