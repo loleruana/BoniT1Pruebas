@@ -1,5 +1,7 @@
 package Examen;
 
+import java.time.LocalDate;
+
 public class Hotel {
     // Habitación check
     public void validarHabitacion(String codigo) {
@@ -22,6 +24,17 @@ public class Hotel {
             throw new IllegalArgumentException(
                     "Recuerde que el nombre del cliente debe contener al menos cuatro caracteres"
             );
+        }
+    }
+
+    // Fecha no puede ser mayor
+    public void validarFechaReserva(LocalDate fechaReserva) {
+        if (fechaReserva == null) {
+            throw new IllegalArgumentException("Debe ingresar una fecha válida");
+        }
+
+        if (!fechaReserva.isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("Debe ingresar una fecha válida");
         }
     }
 }
